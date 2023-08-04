@@ -75,7 +75,7 @@ export class DroneService {
       (state) => state === drone.state,
     );
 
-    if (!drone || availability_state) {
+    if (!drone || availability_state || drone.battery_capacity <= 25) {
       if (availability_state) {
         throw new BadRequestException('Drone is currently not avaialable');
       }
