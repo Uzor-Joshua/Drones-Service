@@ -21,7 +21,9 @@
 </p>
 
 ## Description
-$ Database usage
+```
+Database usage
+```
 For the purpose of the project, I have provided database credentials in which mysql database is used and some data have been seeded into the database.
 
 ## Installation
