@@ -6,6 +6,7 @@ export class DroneDto {
   model: string;
   state: string;
   weight_limit: string;
+  drone_id: string;
   battery_capacity: string;
 }
 

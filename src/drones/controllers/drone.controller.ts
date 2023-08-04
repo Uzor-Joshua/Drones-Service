@@ -61,10 +61,11 @@ export class DroneController {
     };
   }
 
-  @UsePipes(new JoiValidationPipe(medication_schema))
-  @Get('medications')
-  async get_medication(@Body() drone: DroneDto): Promise<ResponseData<IDrone>> {
-    const data = await this.drone_service.get_medication(drone);
+  @Get('medications/:serial_number')
+  async get_medication(
+    @Param() serial_number: DroneDto,
+  ): Promise<ResponseData<IDrone>> {
+    const data = await this.drone_service.get_medication(serial_number);
 
     return {
       status: HttpStatus.OK,
@@ -73,7 +74,6 @@ export class DroneController {
     };
   }
 
-  @UsePipes(new JoiValidationPipe(medication_schema))
   @Get('available')
   async get_available(): Promise<ResponseData<IDrone>> {
     const data = await this.drone_service.get_available();

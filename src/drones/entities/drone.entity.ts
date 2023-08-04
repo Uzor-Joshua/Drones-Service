@@ -4,8 +4,10 @@ import {
   Model,
   DataType,
   ForeignKey,
+  HasMany,
 } from 'sequelize-typescript';
 import Medication from './medication.entity';
+import LoadedWeight from './loaded_weight.entity';
 
 @Table({
   timestamps: true,
@@ -13,7 +15,7 @@ import Medication from './medication.entity';
   tableName: 'drones',
 })
 export default class Drones extends Model<Drones> {
-  // @ForeignKey(() => Medication)
+  @ForeignKey(() => LoadedWeight)
   @Column({
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
@@ -62,4 +64,7 @@ export default class Drones extends Model<Drones> {
     allowNull: false,
   })
   battery_capacity: number;
+
+  @HasMany(() => LoadedWeight)
+  loaded_weight: LoadedWeight;
 }

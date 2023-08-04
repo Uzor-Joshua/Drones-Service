@@ -90,9 +90,6 @@ export class DroneService {
       throw new BadRequestException('Invalid medication');
     }
 
-    console.log(medication.weight);
-    console.log(drone.weight_limit);
-
     if (+medication.weight > +drone.weight_limit) {
       throw new BadRequestException('Drone can not affored this load');
     }
@@ -105,15 +102,10 @@ export class DroneService {
       (weight) => weight.medication_id,
     );
 
-    console.log(medication_code);
-    console.log(drone_loaded_weight);
-
     const sum_of_medications = await this.drone_repository.sum_load(
       extract_medications,
     );
 
-    console.log(+sum_of_medications['total_weight']);
-    console.log(drone.weight_limit);
     if (+sum_of_medications['total_weight'] >= drone.weight_limit) {
       throw new BadRequestException('Drone weight limit reached');
     }

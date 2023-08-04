@@ -45,9 +45,19 @@ export default class DroneRepository {
     });
   }
 
-  all_medication(where): Promise<Drone[]> {
-    return this.drone_entity.findAll<Drone>({
+  all_medication(where): Promise<Drone> {
+    return this.drone_entity.findOne<Drone>({
       where,
+      include: [
+        {
+          model: this.loaded_weight,
+          include: [
+            {
+              model: this.medication_entity,
+            },
+          ],
+        },
+      ],
     });
   }
 
